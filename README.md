@@ -1,3 +1,6 @@
-# Page
+---
+icon: house-chimney-window
+---
 
-Test
+# Home
+
