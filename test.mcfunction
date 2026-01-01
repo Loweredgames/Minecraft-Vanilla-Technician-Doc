@@ -1,19 +1,11 @@
----
-hidden: true
-icon: vial
----
-
-# Test
-
-```mcfunction
 # mcfunction template - esempi di sintassi e comandi
 # File di esempio per mostrare le principali istruzioni mcfunction
 # I commenti qui sotto spiegano la sintassi; rimuovili quando usi il file reale.
 
 # --- Scoreboard: creazione e uso di obiettivi ---
-scoreboard objectives add punti dummy "Punti giocatore"    # crea un objective "punti"
-scoreboard players set @a punti 0                         # imposta a 0 per tutti i giocatori
-scoreboard players add @p punti 5                         # aggiunge 5 punti al giocatore più vicino
+scoreboard objectives add punti dummy "Punti giocatore"
+scoreboard players set @a punti 0
+scoreboard players add @p punti 5
 
 # --- Selettori: esempi di filtri ---
 # @a = tutti, @p = più vicino, @r = casuale, @s = esecutore, @e = entità
@@ -27,19 +19,18 @@ execute unless entity @e[type=armor_stand,tag=marker] run summon armor_stand ~ ~
 
 # --- Salvataggio di risultati con `execute store` ---
 # Esegue comando e salva risultato in scoreboard o storage
-execute store result score @p punti run data get entity @p Health  # salva la salute in scoreboard "punti"
+execute store result score @p punti run data get entity @p Health
 
 # --- Operazioni su scoreboard ---
-scoreboard players operation @a punti += @s altri_punti     # somma tra obiettivi (esempio)
-
+scoreboard players operation @a punti += @s altri_punti
 # --- Gestione dei tag ---
 tag @p add GiocatoreInGioco
-tag @p list                                           # mostra i tag di @p (debug)
+tag @p list
 tag @p remove GiocatoreInGioco
 
 # --- Team ---
-team add Blu                                         # crea il team Blu
-team join Blu @a[team=]                              # aggiunge tutti i non in team al team Blu
+team add Blu
+team join Blu @a[team=]
 
 # --- Funzione chiamata da un altro file (namespace:path) ---
 # Usare in datapack: `function mio_namespace:sub/cartella/azione`
@@ -66,16 +57,15 @@ execute store result score @p punti run data get entity @p Inventory[0].Count
 
 # --- Blocco e world edit base ---
 setblock ~1 ~ ~ minecraft:diamond_block replace
-fill ~2 ~ ~ ~5 ~2 ~5 minecraft:stone 0 replace
-clone ~ ~-1 ~ ~10 ~-1 ~10 ~20 ~ ~ normal
+fill ~2 ~ ~ ~5 ~2 ~5 minecraft:stone replace
+clone ~ ~-1 ~ ~10 ~-1 ~10 ~20 ~ ~
 
 # --- Items e inventario ---
-give @p minecraft:diamond_sword{Enchantments:[{id:"minecraft:sharpness",lvl:5s}],display:{Name:'{"text":"Spada Leggendaria"}'}} 1
-item replace entity @p weapon.mainhand with minecraft:diamond_sword{Unbreakable:1b}
-clear @p minecraft:stone 0                                    # rimuove le pietre
+give @p minecraft:diamond_sword
+item replace entity @p weapon.mainhand with minecraft:diamond_sword
+clear @p minecraft:stone 0
 
 # --- Storage (datapack storage) ---
-storage mynamespace:storage_key data.merge {counter:1}
 data get storage mynamespace:storage_key counter
 
 # --- Loot table ---
@@ -96,7 +86,7 @@ recipe give @p mynamespace:my_recipe
 # In questo file di esempio chiamiamo la funzione di loop
 scoreboard objectives add loop_count dummy "Loop Count"
 scoreboard players set @s loop_count 0
-function mynamespace:loop   # assumendo che esista il file mynamespace/loop.mcfunction
+function mynamespace:loop
 
 # --- Esempio uso `execute anchored/positioned` ---
 execute as @e[type=armor_stand,tag=marker] at @s run summon firework_rocket ~ ~1 ~ {LifeTime:20}
@@ -111,4 +101,3 @@ say Fine del template mcfunction (rimuovi messaggi di debug)
 # Note finali:
 # - Usa commenti con `#` per annotare il file; non verranno eseguiti.
 # - Rimuovi o modifica le righe di esempio prima di usare in produzione.
-```
