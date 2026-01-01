@@ -21,7 +21,6 @@ Qui puoi trovare:
 [cose-mcfunction.md](readme/come-creare-un-datapack/cose-mcfunction.md)
 {% endcontent-ref %}
 
-\
-\# Github
+### Github
 
 Mi serve aiuto per la documentazione. Guarda il repo qui:[https://github.com/Loweredgames/Minecraft-Vanilla-Technician-Doc](https://github.com/Loweredgames/Minecraft-Vanilla-Technician-Doc)
